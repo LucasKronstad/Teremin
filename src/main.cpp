@@ -1,9 +1,14 @@
 #include <Arduino.h>
-const int pingPin = 7;
-const int echoPin = 6;
-long microsecondsToCentimeters(long microseconds) {
-   return microseconds / 29 / 2;
-}
+#include <NewPing.h>
+#include <ToneAC.h>
+
+#define TONE_PIN      9
+#define TONE_VOLUME   1
+#define TRIGGER_PIN   12   
+#define ECHO_PIN      11   
+#define MAX_DISTANCE  200  
+
+NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE); 
 
 void setup() {
   // put your setup code here, to run once:
@@ -12,18 +17,14 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-   long duration, cm;
-   pinMode(pingPin, OUTPUT);
-   digitalWrite(pingPin, LOW);
-   delayMicroseconds(2);
-   digitalWrite(pingPin, HIGH);
-   delayMicroseconds(10);
-   digitalWrite(pingPin, LOW);
-   pinMode(echoPin, INPUT);
-   duration = pulseIn(echoPin, HIGH);
-   cm = microsecondsToCentimeters(duration);
-   Serial.print(cm);
-   Serial.print("cm");
-   Serial.println();
-   delay(100);
+  delay(30); 
+  unsigned long uS = sonar.ping(); 
+    
+  if (1 < uS && uS < 3000) { 
+    int freq = 2000 - uS / 2;
+    toneAC(freq, TONE_VOLUME);
+    Serial.println(freq);
+} else {
+    toneAC(0); 
+  }
 }
