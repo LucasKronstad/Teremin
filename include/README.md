@@ -19,6 +19,7 @@ My version uses an ultrasonic distance sensor to determine if an object is in fr
 
 ![Circuit diagram](circuit.png)
 ![My build](theremin2.jpg)
+
 First I installed the libraries which is easier said than done but after a good amount of good old googling I found the creators installation manual [How to install](https://platformio.org/lib/search?query=owner:teckel12). Once the libraries were installed i had to define some variables for the code to be based on:
 ```#define TONE_PIN      9
 #define TONE_VOLUME   1
@@ -27,7 +28,7 @@ First I installed the libraries which is easier said than done but after a good 
 #define MAX_DISTANCE  200 
 ```
 The PIN commands simply tell the arduino what numbered pin is recieving the corresponding signals. The volume is very self explanatory and can be any number from 1-20. We then have the main block of code putting everything together:
-```  if (1 < uS && uS < 3000) { 
+```if (1 < uS && uS < 3000) { 
     int freq = 2000 - uS / 2;
     toneAC(freq, TONE_VOLUME);
     Serial.println(freq);
