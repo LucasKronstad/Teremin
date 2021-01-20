@@ -17,10 +17,10 @@ Therefore you can create different notes and play music in floating air.
 
 My version uses an ultrasonic distance sensor to determine if an object is in front of the sensor and correlates to a frequency. To start the program I downloaded the libraries *NewPing* and *ToneAC* in order to avoid having to "reinvent the wheel" so to speak. These libraries contain code to easier navigate and manipulate the ultrasonic sensor and the frequencies for the speaker. Before going more in depth about the system, this is how the parts are connected together:
 ![Circuit diagram](circuit.png)
-![My build](20210120_224131.png)
+![My build](20210120_224131.jpg)
 First I installed the libraries which is easier said than done but after a good amount of good old googling I found the creators installation manual [How to install](https://platformio.org/lib/search?query=owner:teckel12). Once the libraries were installed i had to define some variables for the code to be based on:
-    #define TONE_PIN      9
-    #define TONE_VOLUME   1
-    #define TRIGGER_PIN   12   
-    #define ECHO_PIN      11   
-    #define MAX_DISTANCE  200  
+```#define TONE_PIN      9
+#define TONE_VOLUME   1
+#define TRIGGER_PIN   12   
+#define ECHO_PIN      11   
+```#define MAX_DISTANCE  200  
